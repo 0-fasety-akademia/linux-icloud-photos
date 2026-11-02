@@ -6,7 +6,7 @@ Na dysku jest wyłącznie ograniczony cache (do 1 GB).
 
 ## Instalacja
 
-1. `sudo apt install ./icloud-photos-linux_0.5.0_all.deb`
+1. `sudo apt install ./icloud-photos-linux_0.4.0_all.deb`
    (zależności dociągnie apt; paczka tworzy `/opt/icloud-photos-linux/venv` i instaluje
    tam `pyicloud` - **potrzebny internet**).
 2. Uruchom z menu aplikacji: **iCloud Photos (Linux)**. Działa niezależnie od terminala.
