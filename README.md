@@ -1,4 +1,4 @@
-# iCloud Photos (Linux) 0.4.0
+# iCloud Photos (Linux) v0.4.0
 
 Nieoficjalny klient iCloud Photos dla Ubuntu (GTK4 + libadwaita). Zdjęcia zostają
 w chmurze: aplikacja pobiera miniatury i podglądy na żądanie, wideo strumieniuje.
