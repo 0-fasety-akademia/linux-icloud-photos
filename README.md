@@ -1,6 +1,6 @@
 # iCloud Photos (Linux)
 
-**Current version: 0.7.1 (2026-11-03)**
+**Current version: 0.9.1 (2026-11-03)**
 
 An unofficial, free iCloud Photos client for Ubuntu (GTK4 + libadwaita).
 Photos stay in the cloud: the app streams thumbnails, previews and videos on demand
@@ -17,6 +17,19 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 - Thumbnail/preview cache limited to 1 GB (least recently used files are removed)
 - Sign in with Apple ID and two-factor code; session and password (system keyring) are remembered
 - Login errors are selectable and copyable, with a "Copy error" button
+- When the Apple session expires, the app returns to the login screen with a "Session expired" message
+- It signs in again automatically with the saved password, so usually only the 2FA code is needed
+- Jump to a date: type a date in "Search album" (2024, 08.2024, 15.08.2024, "August 2024") and pick "Go to"
+- Jump to a date with the calendar button in the header (calendar with month and year pickers)
+- Date jump uses a binary search (about 17 requests for 12,000 photos) and then continues from that place
+- Multi-select mode: select button, Ctrl+click, check marks on tiles, Ctrl+A, Esc to leave
+- Rubber-band selection: press the left mouse button on the grid and drag to select a block of photos
+- Dragging switches on selection mode by itself; Ctrl+drag toggles photos; the grid scrolls at the window edge
+- Selection mode switches off automatically when the last selected photo is deselected
+- Actions on the selection: add to an album, add to or remove from favourites, save originals to a folder
+- Adding to an album first checks which photos are already in it, skips them and tells you the album name
+- Only the photos that are not in the album yet are added, with a summary of how many were skipped
+- Settings window: cache size limit (GB), "Clear cache" button, video player (automatic / mpv / built-in)
 - Left menu: collapsible "Media types" and "My albums (N)" sections with an album search box
 - Album cover thumbnails (same size for all, cached on disk); star icon for Favorites, camera icon for Videos
 - Section titles and "All Photos" are bold; app version and date are shown at the bottom of the menu
@@ -28,6 +41,9 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 - Grid zoom slider (− / +), Ctrl +, Ctrl −, Ctrl 0 and Ctrl + mouse wheel
 - Grid view presets: small, standard, large, extra large
 - Grid option "Original proportions" shows whole photos without cropping
+- Layout option "Rows (like Google Photos)": photos keep their proportions in rows of equal height that fill the width
+- The row height follows the zoom slider, Ctrl +/-, and the view presets; rows re-flow when the window or menu width changes
+- New photos are appended to the rows while scrolling without resetting the view; portrait/landscape orientation is respected
 - Photo viewer with fullscreen, arrow-key navigation and prefetching of neighbouring photos
 - Photo zoom bar (− / slider / + / Fit), pinch gesture, double-click zoom and drag to pan
 - Original-quality image is fetched automatically when you zoom in
@@ -39,7 +55,11 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 - Live Photos: LIVE badge, play with the LIVE button, `L`, Space or by pressing and holding the photo
 - Photo information: file name, capture date, added date, dimensions, size, location and device (EXIF)
 - Place name lookup via OpenStreetMap only on request; "Show on map" link
-- Right-click menu: Information, Play in mpv, Send to TV, Save original as…, Copy file name
+- Right-click menu: Information, Add to album, Play in mpv, Send to TV, Save original as…, Copy file name
+- "Add to album" in the right-click menu lists the 3 most recently used albums plus "Add to another album…"
+- Right-clicking a photo that is part of the selection adds the whole selection
+- The photo viewer has an "Add to album" button (and the `A` key) with the same recent-albums list
+- The album picker has a search box (Enter selects the first match, a second Enter adds) and lists recent albums first
 - Slideshow of the current album with a PLAY button, crossfade, 3/5/8/15 s per photo, pause and skip
 - Send photos, videos and slideshows to a TV over DLNA/UPnP (LG, Samsung, Sony and others)
 - Send to Chromecast and Google Cast TVs
@@ -55,8 +75,8 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 
 ### Debian/Ubuntu package (recommended)
 
-1. Download `icloud-photos-linux_0.7.1_all.deb`.
-2. Run `sudo apt install ./icloud-photos-linux_0.7.1_all.deb` (requires internet: `pyicloud` and the optional Chromecast/AirPlay libraries are installed into `/opt/icloud-photos-linux/venv`).
+1. Download `icloud-photos-linux_0.9.1_all.deb`.
+2. Run `sudo apt install ./icloud-photos-linux_0.9.1_all.deb` (requires internet: `pyicloud` and the optional Chromecast/AirPlay libraries are installed into `/opt/icloud-photos-linux/venv`).
 3. Start **iCloud Photos (Linux)** from the application menu and sign in.
 
 Upgrade: run the same command with the newer file. Remove: `sudo apt remove icloud-photos-linux`.
@@ -66,18 +86,26 @@ If a library failed to install: `sudo /opt/icloud-photos-linux/venv/bin/pip inst
 
 The source archive contains a `flatpak/` folder. Build and install with `bash flatpak/build-flatpak.sh`, then run
 `flatpak run local.icloudphotos.linux`. It has **not been built or tested yet**; see `flatpak/README.md`.
+
+**Do not keep both versions.** The Flatpak and the `.deb` share the same name, so both would appear in the
+menu, and they keep separate settings and sign-ins. To remove the Flatpak (and its data) and keep the `.deb`:
+`bash flatpak/remove-flatpak.sh` or `flatpak uninstall --delete-data local.icloudphotos.linux`.
+To remove the `.deb` and keep the Flatpak: `sudo apt remove icloud-photos-linux`.
+Check what is installed: `flatpak list --app | grep -i icloud` and `dpkg -l | grep icloud-photos`.
 Inside the Flatpak, mpv is not available, so videos play in the built-in player.
 
 ### Troubleshooting
 
 - Videos do not play: look at `~/.cache/icloud-photos-linux/mpv.log` and `~/.cache/icloud-photos-linux/debug.log`, and make sure `mpv` is installed (`sudo apt install mpv`).
+- "Session expired": sign in again; the app keeps your Apple ID and password in the system keyring.
 - Anything else: `~/.cache/icloud-photos-linux/debug.log` records errors with timestamps.
 
 ## Keyboard shortcuts
 
 - Grid: `Ctrl +`, `Ctrl −`, `Ctrl 0` (thumbnail size), `F11` (fullscreen)
+- Grid: drag with the left mouse button (rubber-band selection), `Ctrl`+drag (toggle), `Ctrl`+click (start selecting), `Ctrl A` (select all loaded photos), `Esc` (leave selection mode)
 - Viewer: `←` `→` `Home` `End` (navigate), `Ctrl +/−/0` (zoom), `F` (fullscreen), `I` (information)
-- Viewer: `L` or Space (Live Photo / play video), `M` (open video in mpv), `Esc` (close)
+- Viewer: `L` or Space (Live Photo / play video), `M` (open video in mpv), `A` (add to album), `Esc` (close)
 - Slideshow: Space (pause), `←` `→` (previous/next), `Esc` (exit)
 
 ## Requirements and limitations
@@ -91,12 +119,16 @@ Inside the Flatpak, mpv is not available, so videos play in the built-in player.
 
 ## Roadmap (not implemented yet)
 
-- Justified rows (Google Photos-style, variable-width tiles) as another grid view
 - Verify and finish the Flatpak package (and decide how to handle mpv inside the sandbox)
 - More reliable photo casting to AirPlay receivers
 
 ## Version history
 
+- 0.9.1: "Add to album" in the right-click menu and the viewer with the 3 most recent albums, searchable album picker
+- 0.9.0: "Rows (like Google Photos)" layout, selection mode switches off after the last photo is deselected, instructions to remove the Flatpak
+- 0.8.2: adding to an album skips photos that are already in it and says so
+- 0.8.1: rubber-band (drag) selection of photos with auto-scroll
+- 0.8.0: session-expiry handling, jump to a date (search box and calendar), multi-select with actions, settings window
 - 0.7.1: fixes video playback (H.264 version by default, automatic fallback to a local file), adds the "Original proportions" grid option, tidier download package
 - 0.7.0: AirPlay (Apple TV) casting with PIN pairing, Flatpak packaging files, Memories removed, documentation update
 - 0.6.0: (Memories, removed in 0.7.0) named after albums, 2:30 limit, progressive start and optional local music; bold sidebar titles; star and camera icons; version label; English package description and README; fixes for album covers and heavy background scans
