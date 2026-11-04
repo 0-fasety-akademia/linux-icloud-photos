@@ -1,12 +1,12 @@
-# iCloud Photos (Linux)
+# Linux iCloud Photos
 
-**Current version: 0.9.1 (2026-11-03)**
+**Current version: 0.13.0 (2026-11-04)**
 
 An unofficial, free iCloud Photos client for Ubuntu (GTK4 + libadwaita).
 Photos stay in the cloud: the app streams thumbnails, previews and videos on demand
 and keeps only a small, size-limited cache on disk.
 
-Free to use, modify and share under the MIT License (see `LICENSE`).
+Free of charge to use and to share **unmodified**. Modification is **not permitted** (see `LICENSE`). This is not an open-source license. Versions before 0.12.2 were published under the MIT License, and copies obtained under it stay under it.
 Created with the help of Claude (Anthropic).
 Not affiliated with, endorsed by or sponsored by Apple Inc. "iCloud" is a trademark of Apple Inc.
 It relies on the unofficial `pyicloud` library, so Apple may break it at any time. Use at your own risk.
@@ -15,6 +15,9 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 
 - Streams photos and videos from iCloud; no library sync to disk
 - Thumbnail/preview cache limited to 1 GB (least recently used files are removed)
+- Interface in English and Polish, chosen by the system language (Polish if the system is set to Polish, English otherwise)
+- German and Ukrainian are available as optional languages: choose them in Settings (applies after a restart) or force a language with `ICLOUD_PHOTOS_LANG=pl`, `en`, `de` or `uk`. The system language only selects Polish or English automatically. The German and Ukrainian texts were written without review by native speakers
+- Month names, plural forms and the names of Apple's built-in albums are translated as well
 - Sign in with Apple ID and two-factor code; session and password (system keyring) are remembered
 - Login errors are selectable and copyable, with a "Copy error" button
 - When the Apple session expires, the app returns to the login screen with a "Session expired" message
@@ -60,49 +63,71 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 - Right-clicking a photo that is part of the selection adds the whole selection
 - The photo viewer has an "Add to album" button (and the `A` key) with the same recent-albums list
 - The album picker has a search box (Enter selects the first match, a second Enter adds) and lists recent albums first
-- Slideshow of the current album with a PLAY button, crossfade, 3/5/8/15 s per photo, pause and skip
+- Slideshow of the current album with crossfade, 3/5/8/15 s per photo, pause and skip. It starts only from inside an album: with the play button in the viewer (next to the information and add-to-album buttons) or from the right-click menu ("Slideshow from this photo"); there is no play button in the header bar
 - Send photos, videos and slideshows to a TV over DLNA/UPnP (LG, Samsung, Sony and others)
 - Send to Chromecast and Google Cast TVs
 - Send to Apple TV and other AirPlay receivers: videos after one-time PIN pairing (the pairing is remembered in the system keyring)
 - Photos to AirPlay receivers are experimental (AirPlay 1 photo protocol) and newer devices may reject them
 - Upload photos and videos by drag and drop or with the "+" button
 - Choose the destination album for uploads, with progress and error reporting
-- Diagnostic log in `~/.cache/icloud-photos-linux/debug.log`
+- Window transparency (Settings, slider; 0 = off, the default): the window and its panels become translucent and a strongly blurred background made from the colours of your photos shows through. The more transparent the window, the stronger that blurred layer, and panels with text always keep at least 75% opacity, so text stays readable. The app cannot blur the desktop behind the window (GTK4 on GNOME does not allow it); for a real blur of what is behind the window use an extension such as Blur my Shell, which can blur any translucent window
+- Refresh button in the header bar (also `F5` or `Ctrl+R`): fetches the album list and the photos of the current album again (for example after adding photos on your phone), keeps the album you were in and forgets the cached album covers so they are downloaded again
+- Delete photos (selection bar, right-click menu, viewer button or the `Delete` key): they go to "Recently Deleted" in iCloud (like the Photos app), after a confirmation, and disappear from your other devices. The app asks Apple to confirm each deletion before it removes the photo from the view.
+- The pinned library versions (pyicloud, keyring, PyChromecast, pyatv) are the ones the app was tested with; the app warns if the installed pyicloud differs
+- Diagnostic log in `~/.cache/linux-icloud-photos/debug.log`
 - Installs as a `.deb` package with a desktop launcher and icon
-- Flatpak packaging files included (experimental, not yet built or tested)
+- Flatpak: builds, installs and runs (tested on Ubuntu 26.10 / GNOME 51), including video playback
 
 ## Installation
 
 ### Debian/Ubuntu package (recommended)
 
-1. Download `icloud-photos-linux_0.9.1_all.deb`.
-2. Run `sudo apt install ./icloud-photos-linux_0.9.1_all.deb` (requires internet: `pyicloud` and the optional Chromecast/AirPlay libraries are installed into `/opt/icloud-photos-linux/venv`).
-3. Start **iCloud Photos (Linux)** from the application menu and sign in.
+1. Download `linux-icloud-photos_0.13.0_all.deb`.
+2. Run `sudo apt install ./linux-icloud-photos_0.10.0_all.deb` (requires internet: `pyicloud` and the optional Chromecast/AirPlay libraries are installed into `/opt/linux-icloud-photos/venv`).
+3. Start **Linux iCloud Photos** from the application menu and sign in.
 
-Upgrade: run the same command with the newer file. Remove: `sudo apt remove icloud-photos-linux`.
-If a library failed to install: `sudo /opt/icloud-photos-linux/venv/bin/pip install pyicloud keyring pychromecast pyatv`.
+Upgrade: run the same command with the newer file. Remove: `sudo apt remove linux-icloud-photos`.
+If a library failed to install: `sudo /opt/linux-icloud-photos/venv/bin/pip install pyicloud keyring pychromecast pyatv`.
 
-### Flatpak (experimental)
+### Flatpak
 
 The source archive contains a `flatpak/` folder. Build and install with `bash flatpak/build-flatpak.sh`, then run
-`flatpak run local.icloudphotos.linux`. It has **not been built or tested yet**; see `flatpak/README.md`.
+`flatpak run local.linuxicloudphotos.Photos`. The script installs the GNOME runtime and the video codec extension
+(`codecs-extra` on GNOME 49 and newer, `ffmpeg-full` on older runtimes) by itself. The build also produces a single
+file `local.linuxicloudphotos.Photos.flatpak` that can be installed elsewhere with
+`flatpak install --user local.linuxicloudphotos.Photos.flatpak`. Tested on Ubuntu 26.10 (GNOME 51), including sign-in,
+browsing and video playback; other distributions are expected to work but have not been tried. In the Flatpak the
+videos play in the built-in player (the film is downloaded to the cache first); mpv is not used there.
+`flatpak/flatpak-launcher.sh` is the start-up script used inside the sandbox and is not meant to be run by hand; see `flatpak/README.md`.
 
 **Do not keep both versions.** The Flatpak and the `.deb` share the same name, so both would appear in the
 menu, and they keep separate settings and sign-ins. To remove the Flatpak (and its data) and keep the `.deb`:
-`bash flatpak/remove-flatpak.sh` or `flatpak uninstall --delete-data local.icloudphotos.linux`.
-To remove the `.deb` and keep the Flatpak: `sudo apt remove icloud-photos-linux`.
+`bash flatpak/remove-flatpak.sh` or `flatpak uninstall --delete-data local.linuxicloudphotos.Photos`.
+To remove the `.deb` and keep the Flatpak: `sudo apt remove linux-icloud-photos`.
 Check what is installed: `flatpak list --app | grep -i icloud` and `dpkg -l | grep icloud-photos`.
 Inside the Flatpak, mpv is not available, so videos play in the built-in player.
 
+### Upgrading from the old name (before 0.12.2)
+
+The app was renamed from `icloud-photos-linux` to **Linux iCloud Photos** (package and command: `linux-icloud-photos`). Installing the new `.deb` replaces the old package automatically. Your settings, session and cache are moved to the new folders (`~/.config/linux-icloud-photos`, `~/.cache/linux-icloud-photos`) the first time the app starts, and the saved Apple ID password and AirPlay pairing are copied to the new keyring entries. Nothing is overwritten if the new folders already exist. The Flatpak id changed too (`local.linuxicloudphotos.Photos`); if you built the old Flatpak, remove it with `flatpak uninstall --delete-data local.icloudphotos.linux`.
+
+### Upgrading the system
+
+The package keeps its own Python environment in `/opt/linux-icloud-photos/venv`. When the system Python changes (for example after an Ubuntu upgrade), the package rebuilds that environment by itself during the upgrade (it needs an internet connection). If the app says its Python environment is broken, repair it with:
+
+```
+sudo dpkg-reconfigure linux-icloud-photos
+```
+
 ### Troubleshooting
 
-- Videos do not play: look at `~/.cache/icloud-photos-linux/mpv.log` and `~/.cache/icloud-photos-linux/debug.log`, and make sure `mpv` is installed (`sudo apt install mpv`).
+- Videos do not play: look at `~/.cache/linux-icloud-photos/mpv.log` and `~/.cache/linux-icloud-photos/debug.log`, and make sure `mpv` is installed (`sudo apt install mpv`).
 - "Session expired": sign in again; the app keeps your Apple ID and password in the system keyring.
-- Anything else: `~/.cache/icloud-photos-linux/debug.log` records errors with timestamps.
+- Anything else: `~/.cache/linux-icloud-photos/debug.log` records errors with timestamps.
 
 ## Keyboard shortcuts
 
-- Grid: `Ctrl +`, `Ctrl −`, `Ctrl 0` (thumbnail size), `F11` (fullscreen)
+- Grid: `Ctrl +`, `Ctrl −`, `Ctrl 0` (thumbnail size), `F11` (fullscreen), `F5` or `Ctrl+R` (refresh the library)
 - Grid: drag with the left mouse button (rubber-band selection), `Ctrl`+drag (toggle), `Ctrl`+click (start selecting), `Ctrl A` (select all loaded photos), `Esc` (leave selection mode)
 - Viewer: `←` `→` `Home` `End` (navigate), `Ctrl +/−/0` (zoom), `F` (fullscreen), `I` (information)
 - Viewer: `L` or Space (Live Photo / play video), `M` (open video in mpv), `A` (add to album), `Esc` (close)
@@ -110,12 +135,20 @@ Inside the Flatpak, mpv is not available, so videos play in the built-in player.
 
 ## Requirements and limitations
 
+- Ubuntu 24.04 or newer (GTK 4.10+, libadwaita 1.2+, Python 3.10+). The minimum versions come from the API the app uses; it was tested on GTK 4.14 and libadwaita 1.5. On older systems the app exits with a clear message instead of failing in unclear ways
+- Other distributions: use the Flatpak
 - Advanced Data Protection must be turned off in your Apple account (otherwise the web API is unavailable)
 - The two-factor session expires every few weeks; the unofficial API may change without notice
 - Accounts that use legacy two-step verification (trusted devices) are not supported
-- Album covers are cached and are not refreshed automatically
+- Album covers are cached and are refreshed only when you press the refresh button
 - A firewall must allow incoming connections from the TV for casting to work
 - AirPlay needs the `pyatv` library; the TV must allow access (Settings > AirPlay and HomeKit) and show a PIN when pairing
+
+## Development
+
+- Tests: `python3 tests/run_tests.py` (needs `xvfb`; compares results with the golden files in `tests/golden`, which keep only values that do not depend on the theme or fonts). Refresh the golden files after intended changes with `python3 tests/run_tests.py --update`
+- Translations: `python3 tools/check_i18n.py`
+- GitHub Actions (`.github/workflows/ci.yml`) runs the tests on Ubuntu 24.04, the newest LTS and the newest regular release, and builds and installs the `.deb`
 
 ## Roadmap (not implemented yet)
 
@@ -124,6 +157,18 @@ Inside the Flatpak, mpv is not available, so videos play in the built-in player.
 
 ## Version history
 
+- 0.13.0: the Flatpak is no longer experimental: build, installation, sign-in and video playback were tested on Ubuntu 26.10 (GNOME 51). No other changes.
+- 0.12.8: video in the Flatpak: the built-in player now plays a local file (the film is downloaded to the cache first), because GStreamer inside the sandbox cannot open http:// addresses (log: "No input stream provided by subclass"). Codecs were never the problem.
+- 0.12.7: the slideshow button is hidden for videos (also in the right-click menu); when the built-in player fails, the real GStreamer error and the list of available decoders go to the caption and debug.log; the Flatpak build only warns about the .deb when it is really installed.
+- 0.12.6: version, date and year shown at the bottom of the login screen; the Flatpak build prints the full path of the remove script.
+- 0.12.5: Flatpak video: the build script installs the codec extension `org.freedesktop.Platform.codecs-extra` (GNOME 49+) explicitly; the branch (e.g. `25.08-extra`) is read from the runtime metadata, because without the extension GStreamer cannot decode H.264/HEVC.
+- 0.12.4: Flatpak build fixed: the desktop entry is written straight into the app folder (the builder gives every command its own /tmp, so the temporary file was lost). The Python libraries already build correctly
+- 0.12.3: Flatpak build asks the pip generator for wheels only for the architecture of the build machine (miniaudio has no aarch64 wheel and stopped the build)
+- 0.12.2: renamed to Linux iCloud Photos (package and command `linux-icloud-photos`) with automatic migration of settings, cache and saved passwords; new license (free of charge, modification not permitted); Flatpak build uses ready-made wheels for packages with compiled code (cryptography needed Rust and failed to build)
+- 0.12.1: refresh button (F5), the slideshow button now exists only inside albums (viewer and right-click menu, not in the header bar), transparency keeps text readable with a stronger blurred layer, Flatpak build fixed again (the pip generator was downloaded from a wrong address)
+- 0.12.0: fixed deletion that took very long (the confirmation scanned the whole library; it now uses one record lookup), optional German and Ukrainian interface, window transparency slider with a blurred photo background, slideshow button shown after clicking an album and in the viewer, Flatpak build fixed for GNOME 49+
+- 0.11.0: delete photos (to "Recently Deleted", confirmed by Apple), pinned library versions, minimum GTK/libadwaita versions, self-repairing Python environment, automated tests and CI
+- 0.10.0: English and Polish interface (follows the system language), language setting
 - 0.9.1: "Add to album" in the right-click menu and the viewer with the 3 most recent albums, searchable album picker
 - 0.9.0: "Rows (like Google Photos)" layout, selection mode switches off after the last photo is deselected, instructions to remove the Flatpak
 - 0.8.2: adding to an album skips photos that are already in it and says so
