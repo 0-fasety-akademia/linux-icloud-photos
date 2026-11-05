@@ -1,6 +1,6 @@
 # Linux iCloud Photos
 
-**Current version: 0.13.3 (2026-11-04)**
+**Current version: 0.13.5 (2026-11-04)**
 
 An unofficial, free iCloud Photos client for Ubuntu (GTK4 + libadwaita).
 Photos stay in the cloud: the app streams thumbnails, previews and videos on demand
@@ -82,7 +82,7 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 
 ### Debian/Ubuntu package (recommended)
 
-1. Download `linux-icloud-photos_0.13.3_all.deb`.
+1. Download `linux-icloud-photos_0.13.5_all.deb`.
 2. Run `sudo apt install ./linux-icloud-photos_0.10.0_all.deb` (requires internet: `pyicloud` and the optional Chromecast/AirPlay libraries are installed into `/opt/linux-icloud-photos/venv`).
 3. Start **Linux iCloud Photos** from the application menu and sign in.
 
@@ -157,6 +157,8 @@ sudo dpkg-reconfigure linux-icloud-photos
 
 ## Version history
 
+- 0.13.5: the app icon follows the system light/dark theme (light tile in the light theme, dark tile in the dark theme). The app switches it at start and whenever the theme changes while it runs; the Flatpak gets permission to write only ~/.local/share/icons for this.
+- 0.13.4: new dark app icon (dark tile with the colourful flower), matching the dark icons of the other apps in the series.
 - 0.13.3: "Send to TV" is always in the right-click menu of a photo or video in an album; if no TV is selected yet, the device list opens and the photo is sent right after you pick one.
 - 0.13.2: casting to LG webOS and Chromecast: before every send the TV gets Stop, Play is retried (the TV needs a moment to load), photos are downloaded first and served from memory instantly (the TV was waiting 2-4 s for the proxy), only one send runs at a time, and UPnP error codes are written to the log. Chromecast: a fresh connection by IP address for each send (fixes "threads can only be started once" and the 10 s timeout).
 - 0.13.1: DLNA photos on TV: the stream now has a fixed Content-Type (image/jpeg or video/mp4) and the DLNA headers/protocolInfo (contentFeatures, transferMode) that many TVs require; before, some TVs showed crossed-out image icons and no picture.
