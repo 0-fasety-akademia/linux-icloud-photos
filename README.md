@@ -1,6 +1,6 @@
 # Linux iCloud Photos
 
-**Current version: 0.13.8 (2026-11-06)**
+**Current version: 0.13.9 (2026-11-06)**
 
 Created by: JGu  
 Supported by Claude
@@ -85,7 +85,7 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 
 ### Debian/Ubuntu package (recommended)
 
-1. Download `linux-icloud-photos_0.13.8_all.deb`.
+1. Download `linux-icloud-photos_0.13.9_all.deb`.
 2. Run `sudo apt install ./linux-icloud-photos_0.10.0_all.deb` (requires internet: `pyicloud` and the optional Chromecast/AirPlay libraries are installed into `/opt/linux-icloud-photos/venv`).
 3. Start **Linux iCloud Photos** from the application menu and sign in.
 
@@ -160,6 +160,7 @@ sudo dpkg-reconfigure linux-icloud-photos
 
 ## Version history
 
+- 0.13.9: expired iCloud file links (Apple answers 410 "endpoint withdrawn" about an hour after the list was loaded): the app now reloads the library by itself when it gets such an answer (at most every 2 minutes) and also every 45 minutes when nothing is open.
 - 0.13.8: "Created by: JGu / Supported by Claude" shown under the version on the sign-in screen and in the sidebar.
 - 0.13.7: a small background helper (autostart, no window, does not start the app) keeps the app icon in step with the light/dark system theme also while the app is closed. The .deb installs it system-wide (/etc/xdg/autostart); the Flatpak build script installs it for your user (~/.local/share/linux-icloud-photos) and `remove-flatpak.sh` removes it. It takes effect after the next sign-in (the Flatpak build also starts it right away).
 - 0.13.6: download links from iCloud that contain the placeholder "${f}" (Apple answered 410 "endpoint withdrawn", e.g. for the camera data of some photos) now get the placeholder replaced before the request.
