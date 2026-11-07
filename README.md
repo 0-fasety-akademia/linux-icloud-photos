@@ -1,6 +1,6 @@
 # Linux iCloud Photos
 
-**Current version: 0.13.9 (2026-11-06)**
+**Current version: 0.14.0 (2026-11-07)**
 
 Created by: JGu  
 Supported by Claude
@@ -77,6 +77,7 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 - Refresh button in the header bar (also `F5` or `Ctrl+R`): fetches the album list and the photos of the current album again (for example after adding photos on your phone), keeps the album you were in and forgets the cached album covers so they are downloaded again
 - Delete photos (selection bar, right-click menu, viewer button or the `Delete` key): they go to "Recently Deleted" in iCloud (like the Photos app), after a confirmation, and disappear from your other devices. The app asks Apple to confirm each deletion before it removes the photo from the view.
 - The pinned library versions (pyicloud, keyring, PyChromecast, pyatv) are the ones the app was tested with; the app warns if the installed pyicloud differs
+- Picker mode for other apps (`--pick`): `linux-icloud-photos --pick --pick-out result.json --pick-dir DIR [--pick-max 30]` opens the app with a read-only library (no delete, favourite, album or upload actions). You select photos and videos and click "Choose"; they are exported to DIR (JPEG/PNG/GIF unchanged, HEIC converted to JPEG, videos as H.264, Live Photos as a still photo) and listed in the JSON file. Exit code 0 = files chosen, 1 = cancelled. linux-whazzapp uses it for "Photos & videos" in the WhatsApp attach menu
 - Diagnostic log in `~/.cache/linux-icloud-photos/debug.log`
 - Installs as a `.deb` package with a desktop launcher and icon
 - Flatpak: builds, installs and runs (tested on Ubuntu 26.10 / GNOME 51), including video playback
@@ -85,7 +86,7 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 
 ### Debian/Ubuntu package (recommended)
 
-1. Download `linux-icloud-photos_0.13.9_all.deb`.
+1. Download `linux-icloud-photos_0.14.0_all.deb`.
 2. Run `sudo apt install ./linux-icloud-photos_0.10.0_all.deb` (requires internet: `pyicloud` and the optional Chromecast/AirPlay libraries are installed into `/opt/linux-icloud-photos/venv`).
 3. Start **Linux iCloud Photos** from the application menu and sign in.
 
@@ -160,6 +161,7 @@ sudo dpkg-reconfigure linux-icloud-photos
 
 ## Version history
 
+- 0.14.0: picker mode (`--pick`) for other apps, used by linux-whazzapp 1.3.0 to attach iCloud photos and videos to a WhatsApp chat. Read-only library in this mode, selection limit, export to a folder, JSON result.
 - 0.13.9: expired iCloud file links (Apple answers 410 "endpoint withdrawn" about an hour after the list was loaded): the app now reloads the library by itself when it gets such an answer (at most every 2 minutes) and also every 45 minutes when nothing is open.
 - 0.13.8: "Created by: JGu / Supported by Claude" shown under the version on the sign-in screen and in the sidebar.
 - 0.13.7: a small background helper (autostart, no window, does not start the app) keeps the app icon in step with the light/dark system theme also while the app is closed. The .deb installs it system-wide (/etc/xdg/autostart); the Flatpak build script installs it for your user (~/.local/share/linux-icloud-photos) and `remove-flatpak.sh` removes it. It takes effect after the next sign-in (the Flatpak build also starts it right away).
