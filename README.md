@@ -1,6 +1,6 @@
 # Linux iCloud Photos
 
-**Current version: 0.15.1 (2026-11-08)**
+**Current version: 0.16.1 (2026-11-09)**
 
 Created by: JGu  
 Supported by Claude
@@ -79,7 +79,7 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 - The pinned library versions (pyicloud, keyring, PyChromecast, pyatv) are the ones the app was tested with; the app warns if the installed pyicloud differs
 - Picker mode for other apps (`--pick`): `linux-icloud-photos --pick --pick-out result.json --pick-dir DIR [--pick-max 30]` opens the app with a read-only library (no delete, favourite, album or upload actions). You select photos and videos and click "Choose"; they are exported to DIR (JPEG/PNG/GIF unchanged, HEIC converted to JPEG, videos as H.264, Live Photos as a still photo) and listed in the JSON file. Exit code 0 = files chosen, 1 = cancelled. linux-whazzapp uses it for "Photos & videos" in the WhatsApp attach menu
 - Links from other apps: `linux-icloud-photos --open-album "NAME"` opens an album, `--open-date 2025-02-14..2025-02-28` jumps to those days in All Photos. If the app is already open, the request goes to the open window. linux-skytrack uses it for "Open album" and "Photos from the trip days"
-- Bridge for other apps, without a window (`bridge.py`, uses the saved session, never asks for a password or 2FA code): `--albums-json`, `--album-thumbs NAME`, `--range-thumbs --from ISO --to ISO`, `--create-album NAME --from ISO --to ISO` (creates the album or reuses an existing one with that name and adds the photos taken in that time, skipping duplicates), `--create-album NAME --allow-empty` (an empty album, e.g. for a planned trip; with a date range it also creates the album when there are no photos yet). Results are written as JSON to `--json OUT`; error `login_required` means the app needs to be opened once to sign in
+- Bridge for other apps, without a window (`bridge.py`, uses the saved session, never asks for a password or 2FA code): `--albums-json`, `--album-thumbs NAME`, `--range-thumbs --from ISO --to ISO`, `--create-album NAME --from ISO --to ISO` (creates the album or reuses an existing one with that name and adds the photos taken in that time, skipping duplicates), `--create-album NAME --allow-empty` (an empty album, e.g. for a planned trip; with a date range it also creates the album when there are no photos yet). `--drive-upload FILE --drive-folder NAME [--prefix P --keep N]` (0.16.0) uploads a file to a folder in the iCloud Drive root, replacing a file with the same name and keeping only the newest N files that start with the prefix (linux-skytrack backups); error `drive_unavailable` when iCloud Drive is off or has no web access. Results are written as JSON to `--json OUT`; error `login_required` means the app needs to be opened once to sign in
 - Diagnostic log in `~/.cache/linux-icloud-photos/debug.log`
 - Installs as a `.deb` package with a desktop launcher and icon
 - Flatpak: builds, installs and runs (tested on Ubuntu 26.10 / GNOME 51), including video playback
@@ -163,6 +163,8 @@ sudo dpkg-reconfigure linux-icloud-photos
 
 ## Version history
 
+- 0.16.1: the date shown next to the version (sign-in screen, sidebar) is the release date again (0.16.0 still showed 2026-11-08).
+- 0.16.0: `--drive-upload FILE --drive-folder NAME [--prefix P --keep N]` in the window-less bridge: uploads a file to a folder in the iCloud Drive root (replacing a file with the same name, keeping only the newest N files with the prefix). Used by linux-skytrack 1.2.0 to keep its backups in iCloud Drive. Needs iCloud Drive with web access (not available with Advanced Data Protection unless “Access iCloud Data on the Web” is on).
 - 0.15.1: `--allow-empty` for `--create-album`: creates an empty album (linux-skytrack 0.8.0 creates a trip album when you plan a trip).
 - 0.15.0: links and a window-less bridge for other apps (`--open-album`, `--open-date`, `--albums-json`, `--album-thumbs`, `--range-thumbs`, `--create-album`), used by linux-skytrack 0.3.0 to attach an iCloud album to a flight, show its photos on the boarding pass and create a trip album from the trip days.
 - 0.14.0: picker mode (`--pick`) for other apps, used by linux-whazzapp 1.3.0 to attach iCloud photos and videos to a WhatsApp chat. Read-only library in this mode, selection limit, export to a folder, JSON result.
