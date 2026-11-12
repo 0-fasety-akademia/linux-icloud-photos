@@ -1,6 +1,6 @@
 # Linux iCloud Photos
 
-**Current version: 0.16.2 (2026-11-12)**
+**Current version: 0.16.3 (2026-11-12)**
 
 Created by: JGu  
 Supported by Claude
@@ -173,6 +173,7 @@ All commands below are run inside `src/`.
 
 ## Version history
 
+- 0.16.3: the license (`LICENSE`, `packaging/copyright`) names its author, JGu; the terms are unchanged. No other changes in the app.
 - 0.16.2: no changes in the app. The repository now holds the source code in `src/` instead of a source archive, and the `.deb` is published on the GitHub Releases page (built by GitHub Actions for every version tag). README brought up to date (installation steps, removed the finished roadmap).
 - 0.16.1: the date shown next to the version (sign-in screen, sidebar) is the release date again (0.16.0 still showed 2026-11-08).
 - 0.16.0: `--drive-upload FILE --drive-folder NAME [--prefix P --keep N]` in the window-less bridge: uploads a file to a folder in the iCloud Drive root (replacing a file with the same name, keeping only the newest N files with the prefix). Used by linux-skytrack 1.2.0 to keep its backups in iCloud Drive. Needs iCloud Drive with web access (not available with Advanced Data Protection unless “Access iCloud Data on the Web” is on).
