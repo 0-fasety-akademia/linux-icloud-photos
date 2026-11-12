@@ -45,5 +45,5 @@ r=requests.get(url); print("full:",r.status_code,len(r.content),"==",len(DATA),r
 r=requests.get(url.rsplit("/",1)[0]+"/zly"); print("zły token:",r.status_code)
 # 3) GStreamer przez proxy (seek wymaga Range)
 p=subprocess.run(["gst-launch-1.0","-q","playbin",f"uri={url}","video-sink=fakesink","audio-sink=fakesink"],capture_output=True,text=True,timeout=30)
-print("gst playbin przez proxy rc=",p.returncode,p.stderr.strip()[:200])
+print("gst playbin przez proxy rc=",p.returncode,"| doszedł do danych (typefind):","Could not determine type of stream" in p.stderr)
 print("log:", open(backend.DEBUG_LOG).read().strip().splitlines()[-2:])

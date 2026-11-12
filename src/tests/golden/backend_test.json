@@ -8,9 +8,7 @@
   "range: 206 100 bytes 0-99/900000",
   "full: 200 900000 == 900000 True",
   "zły token: 404",
-  "gst playbin przez proxy rc= 1 ERROR: from element /GstPlayBin:playbin0/GstURIDecodeBin:uridecodebin0/GstTypeFindElement:typefindelement0: Could not determine type of stream.",
-  "Additional debug info:",
-  "../plugins/elements/gsttypefindel"
+  "gst playbin przez proxy rc= 1 | doszedł do danych (typefind): True"
  ],
  "runs": 2,
  "dropped_unstable": 1
