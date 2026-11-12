@@ -1,0 +1,22 @@
+{
+ "lines": [
+  "(0, {'version': 1, 'ok': True, 'error': None, 'albums': [{'name': 'All Photos', 'smart': True}, {'name': 'Dubaj 2025', 'smart': False}]})",
+  "0 4 3 b'\\xff\\xd8JPEGa8' ['0.jpg', '1.jpg', '2.jpg']",
+  "0 6 4 2025-02-14T00:00:00+00:00 2025-02-16T12:00:00+00:00",
+  "0 {'version': 1, 'ok': True, 'error': None, 'album': '✈ Dubaj · lut 2025', 'created': True, 'found': 6, 'added': 6, 'already': 0, 'errors': []}",
+  "0 {'version': 1, 'ok': True, 'error': None, 'album': '✈ Dubaj · lut 2025', 'created': False, 'found': 8, 'added': 2, 'already': 6, 'errors': []}",
+  "1 {'version': 1, 'ok': False, 'error': 'album_not_found', 'message': 'Nope'}",
+  "0 {'version': 1, 'ok': True, 'error': None, 'album': '✈ Korfu · cze 2027', 'created': True, 'found': 0, 'added': 0, 'already': 0, 'errors': []}",
+  "0 False 0",
+  "0 False 0",
+  "2 bad_option",
+  "['All Photos', 'Dubaj 2025', '✈ Dubaj · lut 2025', '✈ Korfu · cze 2027']",
+  "2 {'version': 1, 'ok': False, 'error': 'bad_option', 'message': 'bad date: x'}",
+  "False True",
+  "({'album': 'Dubaj 2025'}, ['app.py', '--x'])",
+  "({'date': '2025-02-14..2025-02-28'}, ['app.py'])",
+  "ValueError missing value for --open-album"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

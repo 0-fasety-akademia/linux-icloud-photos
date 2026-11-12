@@ -1,0 +1,17 @@
+{
+ "lines": [
+  "no_memories_row -> True",
+  "titles -> ['Wszystkie zdjęcia', 'Ulubione', 'Wideo', 'Live Photos']",
+  "all_photos_bold -> True",
+  "favorites_star -> (True, 'starred-symbolic', 26)",
+  "videos_camera -> (True, 'camera-video-symbolic')",
+  "covers_loaded -> [True, True]",
+  "user_album_covers -> [True, True, True]",
+  "expanders_bold -> (True, 'Moje albumy (3)')",
+  "version_label_matches_version_py -> True",
+  "grid_items -> 300",
+  "EXCEPTIONS: none"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

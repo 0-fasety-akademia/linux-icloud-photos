@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: src
+
+jobs:
+  tests:
+    name: Tests on ${{ matrix.image }}
+    runs-on: ubuntu-latest
+    container: ${{ matrix.image }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # 24.04 LTS, the newest LTS and the newest regular release
+        image: ["ubuntu:24.04", "ubuntu:latest", "ubuntu:rolling"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system packages
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            python3 python3-venv python3-gi python3-gi-cairo \
+            gir1.2-gtk-4.0 gir1.2-adw-1 gir1.2-gdkpixbuf-2.0 librsvg2-common \
+            xvfb xauth libgl1-mesa-dri adwaita-icon-theme fonts-dejavu-core \
+            ca-certificates
+
+      - name: Show GTK and libadwaita versions
+        run: |
+          python3 - <<'PY'
+          import gi
+          gi.require_version("Gtk", "4.0"); gi.require_version("Adw", "1")
+          from gi.repository import Gtk, Adw
+          print("GTK", Gtk.get_major_version(), Gtk.get_minor_version(), "| libadwaita", Adw.get_major_version(), Adw.get_minor_version())
+          PY
+
+      - name: Python environment with the pinned libraries
+        run: |
+          python3 -m venv --system-site-packages .venv
+          . .venv/bin/activate
+          pip install -r requirements.txt -r requirements-optional.txt -c constraints.txt \
+            || pip install -r requirements.txt -r requirements-optional.txt
+
+      - name: Run the test suite
+        run: |
+          . .venv/bin/activate
+          python tests/run_tests.py
+
+  package:
+    name: Build and install the .deb
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the package
+        run: |
+          mkdir -p dist
+          bash build-deb.sh "" dist
+      - name: Install it
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ./dist/linux-icloud-photos_*_all.deb
+      - name: Check the installed environment
+        run: |
+          /opt/linux-icloud-photos/venv/bin/python -c "import pyicloud, keyring; print('pyicloud', __import__('importlib.metadata').metadata.version('pyicloud'))"
+          test -f /usr/share/linux-icloud-photos/constraints.txt
+          desktop-file-validate /usr/share/applications/local.linuxicloudphotos.Photos.desktop
+      - name: Upload the package
+        uses: actions/upload-artifact@v4
+        with:
+          name: deb
+          path: src/dist/*.deb

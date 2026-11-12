@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>local.linuxicloudphotos.Photos</id>
+  <name>Linux iCloud Photos</name>
+  <summary>Unofficial iCloud Photos client that streams instead of syncing</summary>
+  <summary xml:lang="pl">Nieoficjalny klient iCloud Photos, który strumieniuje zamiast synchronizować</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <description>
+    <p>Browse your iCloud photos, albums, Live Photos and videos without syncing the library to disk.
+       Only a small, size-limited thumbnail cache is kept.</p>
+    <p>Features: newest-first infinite scroll, zoom, photo information, slideshows, upload with album choice,
+       and casting to DLNA/UPnP, Chromecast and AirPlay (Apple TV) receivers.</p>
+    <p>This is an unofficial application, not affiliated with Apple Inc. Advanced Data Protection must be turned off.</p>
+  </description>
+  <launchable type="desktop-id">local.linuxicloudphotos.Photos.desktop</launchable>
+  <provides><binary>linux-icloud-photos</binary></provides>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.14.0" date="2026-11-07">
+      <description><p>Picker mode for other apps (linux-whazzapp).</p></description>
+    </release>
+    <release version="0.13.9" date="2026-11-06">
+      <description><p>Automatic refresh when iCloud file links expire.</p></description>
+    </release>
+    <release version="0.13.8" date="2026-11-06">
+      <description><p>Credits shown under the version number.</p></description>
+    </release>
+    <release version="0.13.7" date="2026-11-05">
+      <description><p>Background helper that keeps the app icon in step with the system theme.</p></description>
+    </release>
+    <release version="0.13.6" date="2026-11-05">
+      <description><p>Fix for iCloud download links that contain a filename placeholder.</p></description>
+    </release>
+    <release version="0.13.5" date="2026-11-05">
+      <description><p>App icon follows the light/dark system theme.</p></description>
+    </release>
+    <release version="0.13.4" date="2026-11-04">
+      <description><p>Dark app icon.</p></description>
+    </release>
+    <release version="0.13.3" date="2026-11-04">
+      <description><p>Send to TV straight from the right-click menu in albums.</p></description>
+    </release>
+    <release version="0.13.2" date="2026-11-04">
+      <description><p>More reliable casting to LG webOS TVs and Chromecast.</p></description>
+    </release>
+    <release version="0.13.1" date="2026-11-04">
+      <description><p>Better DLNA compatibility when casting photos to TVs.</p></description>
+    </release>
+    <release version="0.13.0" date="2026-11-04">
+      <description><p>The Flatpak is no longer experimental.</p></description>
+    </release>
+    <release version="0.12.8" date="2026-11-04">
+      <description><p>Video playback in the Flatpak plays a cached local file.</p></description>
+    </release>
+    <release version="0.12.7" date="2026-11-04">
+      <description><p>No slideshow button on videos; clearer video error.</p></description>
+    </release>
+    <release version="0.12.6" date="2026-11-04">
+      <description><p>Version shown on the login screen.</p></description>
+    </release>
+    <release version="0.12.5" date="2026-11-04">
+      <description><p>Flatpak installs the video codec extension explicitly.</p></description>
+    </release>
+    <release version="0.12.4" date="2026-11-04">
+      <description><p>Flatpak build fix for the desktop entry.</p></description>
+    </release>
+    <release version="0.12.3" date="2026-11-03">
+      <description><p>Flatpak build only needs wheels for the build machine architecture.</p></description>
+    </release>
+    <release version="0.12.2" date="2026-11-03">
+      <description><p>Renamed to Linux iCloud Photos; Flatpak build uses ready-made wheels for packages with compiled code.</p></description>
+    </release>
+    <release version="0.12.1" date="2026-11-03">
+      <description><p>Refresh button, slideshow only inside albums, more readable transparency.</p></description>
+    </release>
+    <release version="0.12.0" date="2026-11-03">
+      <description><p>Fixed slow photo deletion, optional German and Ukrainian interface, window transparency, slideshow button changes.</p></description>
+    </release>
+    <release version="0.10.0" date="2026-11-03">
+      <description><p>English and Polish interface, chosen by the system language.</p></description>
+    </release>
+    <release version="0.9.1" date="2026-11-03">
+      <description><p>Add to album from the right-click menu and the viewer, with recent albums and a search box.</p></description>
+    </release>
+    <release version="0.9.0" date="2026-11-03">
+      <description><p>Adds a Google Photos-style rows layout.</p></description>
+    </release>
+    <release version="0.8.2" date="2026-11-03">
+      <description><p>Adding photos to an album skips photos that are already in it.</p></description>
+    </release>
+    <release version="0.8.1" date="2026-11-03">
+      <description><p>Rubber-band (drag) selection of photos.</p></description>
+    </release>
+    <release version="0.8.0" date="2026-11-03">
+      <description><p>Session-expiry handling, jump to a date, multi-select actions and a settings window.</p></description>
+    </release>
+    <release version="0.7.1" date="2026-11-03">
+      <description><p>Fixes video playback and adds an original-proportions grid option.</p></description>
+    </release>
+    <release version="0.7.0" date="2026-11-03">
+      <description><p>Adds AirPlay (Apple TV) casting and a Flatpak package; removes the experimental Memories feature.</p></description>
+    </release>
+  </releases>
+</component>

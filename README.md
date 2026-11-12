@@ -1,6 +1,6 @@
 # Linux iCloud Photos
 
-**Current version: 0.16.1 (2026-11-09)**
+**Current version: 0.16.2 (2026-11-12)**
 
 Created by: JGu  
 Supported by Claude
@@ -88,8 +88,8 @@ It relies on the unofficial `pyicloud` library, so Apple may break it at any tim
 
 ### Debian/Ubuntu package (recommended)
 
-1. Download `linux-icloud-photos_0.14.0_all.deb`.
-2. Run `sudo apt install ./linux-icloud-photos_0.10.0_all.deb` (requires internet: `pyicloud` and the optional Chromecast/AirPlay libraries are installed into `/opt/linux-icloud-photos/venv`).
+1. Download the newest `linux-icloud-photos_<version>_all.deb` from the [Releases page](https://github.com/jgu-linux-apps/linux-icloud-photos/releases/latest).
+2. Run `sudo apt install ./linux-icloud-photos_<version>_all.deb` (requires internet: `pyicloud` and the optional Chromecast/AirPlay libraries are installed into `/opt/linux-icloud-photos/venv`).
 3. Start **Linux iCloud Photos** from the application menu and sign in.
 
 Upgrade: run the same command with the newer file. Remove: `sudo apt remove linux-icloud-photos`.
@@ -97,7 +97,7 @@ If a library failed to install: `sudo /opt/linux-icloud-photos/venv/bin/pip inst
 
 ### Flatpak
 
-The source archive contains a `flatpak/` folder. Build and install with `bash flatpak/build-flatpak.sh`, then run
+The `src/` folder of the repository (or the source archive from the Releases page) contains a `flatpak/` folder. From that folder's parent, build and install with `bash flatpak/build-flatpak.sh`, then run
 `flatpak run local.linuxicloudphotos.Photos`. The script installs the GNOME runtime and the video codec extension
 (`codecs-extra` on GNOME 49 and newer, `ffmpeg-full` on older runtimes) by itself. The build also produces a single
 file `local.linuxicloudphotos.Photos.flatpak` that can be installed elsewhere with
@@ -152,17 +152,28 @@ sudo dpkg-reconfigure linux-icloud-photos
 
 ## Development
 
+The repository keeps the source code in `src/`; built packages are not stored in git but attached to [GitHub Releases](https://github.com/jgu-linux-apps/linux-icloud-photos/releases).
+
+```
+linux-icloud-photos/
+├── .github/workflows/   # ci.yml (tests + .deb build), release.yml (publishes a release for a tag)
+├── src/                 # application source: app.py, backend.py, packaging/, flatpak/, tests/, tools/
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
+All commands below are run inside `src/`.
+
+- Build the `.deb`: `bash build-deb.sh` (the version comes from `version.py`; `bash build-deb.sh "" dist` writes it to `dist/`)
+- Release: set `VERSION` and `DATE` in `version.py`, add a line to the version history below, commit, then `git tag vX.Y.Z && git push origin vX.Y.Z`. GitHub Actions checks that the tag matches `version.py`, builds and installs the `.deb`, and publishes it with a source archive as a release
 - Tests: `python3 tests/run_tests.py` (needs `xvfb`; compares results with the golden files in `tests/golden`, which keep only values that do not depend on the theme or fonts). Refresh the golden files after intended changes with `python3 tests/run_tests.py --update`
 - Translations: `python3 tools/check_i18n.py`
 - GitHub Actions (`.github/workflows/ci.yml`) runs the tests on Ubuntu 24.04, the newest LTS and the newest regular release, and builds and installs the `.deb`
 
-## Roadmap (not implemented yet)
-
-- Verify and finish the Flatpak package (and decide how to handle mpv inside the sandbox)
-- More reliable photo casting to AirPlay receivers
-
 ## Version history
 
+- 0.16.2: no changes in the app. The repository now holds the source code in `src/` instead of a source archive, and the `.deb` is published on the GitHub Releases page (built by GitHub Actions for every version tag). README brought up to date (installation steps, removed the finished roadmap).
 - 0.16.1: the date shown next to the version (sign-in screen, sidebar) is the release date again (0.16.0 still showed 2026-11-08).
 - 0.16.0: `--drive-upload FILE --drive-folder NAME [--prefix P --keep N]` in the window-less bridge: uploads a file to a folder in the iCloud Drive root (replacing a file with the same name, keeping only the newest N files with the prefix). Used by linux-skytrack 1.2.0 to keep its backups in iCloud Drive. Needs iCloud Drive with web access (not available with Advanced Data Protection unless “Access iCloud Data on the Web” is on).
 - 0.15.1: `--allow-empty` for `--create-album`: creates an empty album (linux-skytrack 0.8.0 creates a trip album when you plan a trip).

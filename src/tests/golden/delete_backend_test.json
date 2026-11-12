@@ -1,0 +1,14 @@
+{
+ "lines": [
+  "all_confirmed -> (4, [], (4, 4), [4])",
+  "fast_no_library_scan -> True",
+  "one_delete_fails -> (['id0', 'id2', 'id3'], ['IMG_1.HEIC: HTTP 500'], [3])",
+  "apple_did_not_confirm_one -> (['id0', 'id1'], ['IMG_2.HEIC: Apple nie potwierdziło usunięcia'])",
+  "lookup_fails_trust_delete -> (2, [])",
+  "error_record_not_confirmed -> (['id0'], ['IMG_1.HEIC: Apple nie potwierdziło usunięcia'])",
+  "batches_of_100 -> (250, [], [100, 100, 50])",
+  "empty_list_no_requests -> ([], [], [])"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

@@ -1,0 +1,8 @@
+{
+ "lines": [
+  "pełne 200: status=200 bytes=1024000 (Ns)",
+  "Range 206: status=206 bytes=100 (Ns)"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

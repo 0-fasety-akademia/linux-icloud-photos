@@ -1,0 +1,20 @@
+{
+ "lines": [
+  "rows -> ['[LG] OLED   ·   DLNA', 'Kuchnia   ·   Chromecast', 'Salon Apple TV   ·   AirPlay']",
+  "airplay_in_list -> True",
+  "pick_airplay_opens_pairing -> None",
+  "pairing_dialog_open -> 1",
+  "pin_entry_enabled -> (True, 'Wpisz PIN z ekranu TV.')",
+  "target_not_set_before_pairing -> True",
+  "wrong_pin_message -> ('Zły PIN albo błąd parowania: ', True, True)",
+  "pin_saved_to_target -> 1234",
+  "dialog_closed_target_set -> (0, True, True)",
+  "cast_photo_to_airplay -> None",
+  "airplay_calls_photo -> [('photo.jpg', 'image/jpeg', False)]",
+  "no_second_pairing_after_paired -> 0",
+  "stop -> (True, None)",
+  "EXCEPTIONS: none"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

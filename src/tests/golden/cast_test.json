@@ -1,0 +1,17 @@
+{
+ "lines": [
+  "ssdp parse: http://10.0.0.5:1234/d.xml",
+  "/AVT/ctl \"urn:schemas-upnp-org:service:AVTransport:1#Stop\"",
+  "/AVT/ctl \"urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI\"",
+  "/AVT/ctl \"urn:schemas-upnp-org:service:AVTransport:1#Play\"",
+  "/AVT/ctl \"urn:schemas-upnp-org:service:AVTransport:1#Stop\"",
+  "SetURI zawiera URI (escaped): True",
+  "DIDL w metadanych (escaped): True | protocolInfo: True",
+  "tytuł escaped: True",
+  "Play: Speed=1: True",
+  "koperty SOAP to poprawny XML",
+  "nie-renderer -> None"
+ ],
+ "runs": 2,
+ "dropped_unstable": 1
+}

@@ -1,0 +1,31 @@
+{
+ "lines": [
+  "A1_ctrl_click_on -> (True, 1)",
+  "A2_ctrl_click_off_last_exits_mode -> (False, 0, False, False)",
+  "A3_button_mode_empty_stays -> (True, 0)",
+  "A4_two_selected -> 2",
+  "A5_one_off_mode_stays -> (True, 1)",
+  "A6_last_off_exits -> (False, 0)",
+  "A7_drag_selected -> 3",
+  "A8_ctrl_drag_unselects_all_exits -> (False, 0)",
+  "A9_clear_button_keeps_mode -> (True, 0)",
+  "B1_mode_and_cfg -> ('rows', True, 'rows', False)",
+  "B2_rows_built -> 60",
+  "B3_row_heights_equal -> True",
+  "B4_rows_fill_width -> [1002, 1002, 1001]",
+  "B5_aspect_matches_objects -> True",
+  "B6_differing_widths -> True",
+  "B7_aspect_corrected_from_thumbnail -> [1.33, 1.33, 1.33]",
+  "C1_incremental_append -> (True, True, False)",
+  "D1_bigger_target_bigger_rows -> (159, 231, True)",
+  "E1_width_change_relayouts -> (1015, 1290, 1276, 0)",
+  "E2_tile_activate_opens_viewer -> 1",
+  "E3_click_selects_in_rows -> 1",
+  "E4_rubberband_in_rows -> True",
+  "F1_back_to_grid -> ('grid', True, 'grid', True)",
+  "F2_squares_restored -> {(width=280, height=280)}",
+  "EXCEPTIONS: none"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

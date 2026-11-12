@@ -1,0 +1,13 @@
+{
+ "lines": [
+  "pending_before_login -> ({'album': 'Rodzina'}, False)",
+  "album_opened -> ('Rodzina', True, None)",
+  "date_jump -> ('od: 1 mar 2020 – 5 mar 2020', 'Wszystkie zdjęcia', 'Przechodzę do: 1 mar 2020 – 5 mar 2020…')",
+  "first_after_jump -> 2020-03-05",
+  "new_album_after_refresh -> (1, '✈ Dubaj 2025')",
+  "missing_album_toast -> (2, 'Nie znaleziono albumu „Nie ma”')",
+  "bad_date_toast -> Nieczytelna data: jutro"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

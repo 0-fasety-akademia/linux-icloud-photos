@@ -1,0 +1,17 @@
+#!/bin/sh
+# Starts Linux iCloud Photos. Detects a broken Python environment (usually after a system upgrade).
+APP=/usr/lib/linux-icloud-photos
+PY=/opt/linux-icloud-photos/venv/bin/python
+minor() { "$1" -c 'import sys; print(sys.version_info[1])' 2>/dev/null; }
+if [ -z "$(minor "$PY")" ] || [ "$(minor "$PY")" != "$(minor python3)" ]; then
+    case "${LANGUAGE:-${LC_ALL:-${LC_MESSAGES:-$LANG}}}" in
+        pl*) MSG="Środowisko Pythona aplikacji Linux iCloud Photos jest uszkodzone (zwykle po aktualizacji systemu). Napraw je poleceniem: sudo dpkg-reconfigure linux-icloud-photos" ;;
+        *)   MSG="The Python environment of Linux iCloud Photos is broken (usually after a system upgrade). Repair it with: sudo dpkg-reconfigure linux-icloud-photos" ;;
+    esac
+    echo "$MSG" >&2
+    command -v notify-send >/dev/null 2>&1 && notify-send "Linux iCloud Photos" "$MSG"
+    exit 1
+fi
+export PYTHONDONTWRITEBYTECODE=1
+cd "$APP" || exit 1
+exec "$PY" app.py "$@"

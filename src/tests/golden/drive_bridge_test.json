@@ -1,0 +1,19 @@
+{
+ "lines": [
+  "0 {'version': 1, 'ok': True, 'error': None, 'folder': 'SkyTrack', 'name': 'skytrack-kopia-2026-11-01.skytrack', 'size': 10, 'replaced': False, 'removed': []}",
+  "0 skytrack-kopia-2026-11-02.skytrack []",
+  "0 skytrack-kopia-2026-11-03.skytrack []",
+  "0 skytrack-kopia-2026-11-04.skytrack ['skytrack-kopia-2026-11-01.skytrack']",
+  "0 True 2 []",
+  "['skytrack-kopia-2026-11-02.skytrack', 'skytrack-kopia-2026-11-03.skytrack', 'skytrack-kopia-2026-11-04.skytrack'] [b'CC']",
+  "trash ['skytrack-kopia-2026-11-01.skytrack', 'skytrack-kopia-2026-11-04.skytrack']",
+  "0 ['skytrack-kopia-2026-11-03.skytrack', 'skytrack-kopia-2026-11-02.skytrack'] ['moje-notatki.txt', 'skytrack-kopia-2026-11-04.skytrack', 'skytrack-kopia-2026-11-05.skytrack']",
+  "(2, {'version': 1, 'ok': False, 'error': 'bad_option', 'message': 'no such file: /nie/ma/takiego/pliku'})",
+  "bad_option",
+  "bad_option",
+  "(1, {'version': 1, 'ok': False, 'error': 'drive_unavailable', 'message': 'RuntimeError: Drive disabled (ADP)'})",
+  "True"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

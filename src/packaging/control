@@ -1,0 +1,21 @@
+Package: linux-icloud-photos
+Version: @VERSION@
+Section: graphics
+Priority: optional
+Architecture: all
+Maintainer: Jaro <jaro@localhost>
+Replaces: icloud-photos-linux
+Conflicts: icloud-photos-linux
+Depends: python3 (>= 3.10), python3-venv, python3-gi, gir1.2-gtk-4.0 (>= 4.10), gir1.2-adw-1 (>= 1.2)
+Recommends: libgtk-4-media-gstreamer, gstreamer1.0-plugins-good, gstreamer1.0-plugins-bad, gstreamer1.0-libav, heif-gdk-pixbuf, librsvg2-common, mpv, python3-keyring
+Description: Unofficial iCloud Photos client for Ubuntu (GTK4)
+ Browse iCloud photos, albums, Live Photos and videos by streaming them, without
+ syncing the library to disk. Only a small, size-limited thumbnail cache is kept.
+ .
+ Features: newest-first infinite scroll, zoom, photo information, slideshows,
+ upload with album choice, and casting to DLNA/UPnP, Chromecast and AirPlay
+ (Apple TV) receivers. Advanced Data Protection must be turned off. The
+ unofficial pyicloud library is installed into /opt/linux-icloud-photos/venv.
+ .
+ Free of charge, may be redistributed unmodified; modification is not permitted
+ (see the license). Created with the help of Claude.

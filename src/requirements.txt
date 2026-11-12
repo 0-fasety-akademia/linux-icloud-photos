@@ -1,0 +1,3 @@
+# Wymagane biblioteki (przypięte do wersji, z którymi aplikacja była testowana)
+pyicloud==2026.10.1
+keyring==25.7.0

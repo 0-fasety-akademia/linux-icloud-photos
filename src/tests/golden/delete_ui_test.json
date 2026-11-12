@@ -1,0 +1,26 @@
+{
+ "lines": [
+  "trash_button_exists_disabled_without_selection -> (False, True)",
+  "trash_button_enabled_with_selection -> True",
+  "click_trash_asks_first_nothing_deleted_yet -> ([], True)",
+  "delete_key_in_select_mode_handled -> []",
+  "backend_called_with_selected_ids -> True",
+  "removed_from_view -> (300, 297)",
+  "deleted_ids_absent -> True",
+  "selection_cleared -> 0",
+  "total_and_counter_updated -> (747, '297 / 747')",
+  "toast_moved -> Przeniesiono do „Ostatnio usunięte”: 3 z 3",
+  "partial_failure_removes_only_confirmed -> (297, 296)",
+  "trash_album_confirm_refuses -> (True, 'W albumie „Ostatnio usunięte” nie można ')",
+  "trash_album_button_disabled -> False",
+  "trash_album_context_menu_has_no_delete -> []",
+  "normal_album_context_menu_has_delete_last -> Usuń…",
+  "viewer_trash_button_visible -> True",
+  "viewer_delete_key_asks_first -> True",
+  "viewer_moves_to_next_after_delete -> (True, True)",
+  "rows_view_updated_after_delete -> (295, 291, 291)",
+  "EXCEPTIONS: none"
+ ],
+ "runs": 2,
+ "dropped_unstable": 2
+}

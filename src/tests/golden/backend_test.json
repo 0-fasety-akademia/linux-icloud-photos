@@ -1,0 +1,17 @@
+{
+ "lines": [
+  "film thumb -> b'JPEG-thumb_image'",
+  "film medium -> b'JPEG-medium_image'",
+  "zdjęcie thumb -> b'JPEG-thumb'",
+  "zdjęcie medium -> b'JPEG-medium'",
+  "film bez obrazków -> LookupError (OK, kafelek dostanie ikonę)",
+  "range: 206 100 bytes 0-99/900000",
+  "full: 200 900000 == 900000 True",
+  "zły token: 404",
+  "gst playbin przez proxy rc= 1 ERROR: from element /GstPlayBin:playbin0/GstURIDecodeBin:uridecodebin0/GstTypeFindElement:typefindelement0: Could not determine type of stream.",
+  "Additional debug info:",
+  "../plugins/elements/gsttypefindel"
+ ],
+ "runs": 2,
+ "dropped_unstable": 1
+}

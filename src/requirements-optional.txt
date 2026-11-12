@@ -1,0 +1,3 @@
+# Opcjonalne: wysyłanie na Chromecasta i AirPlay (bez nich reszta aplikacji działa)
+pychromecast==14.1.1
+pyatv==0.18.0

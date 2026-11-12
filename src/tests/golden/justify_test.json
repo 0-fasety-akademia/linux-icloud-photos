@@ -1,0 +1,16 @@
+{
+ "lines": [
+  "rzędów: 97 | pokryte zdjęcia: 500 z 500 | ciągłe: True",
+  "pełne rzędy wypełniają szerokość: True | odchyłka max (px): 0",
+  "wysokości pełnych rzędów (min/śr/max): 130 160 180 (cel 180 )",
+  "ostatni rząd: wysokość = 180 | szerokość 239 <= 1100",
+  "kształt zachowany (w/h ≈ aspekt): True",
+  "jedno bardzo szerokie zdjęcie: [(0, 1, 180, [540])]",
+  "kilka wąskich (niepełny rząd): [(0, 3, 180, [90, 90, 90])]",
+  "pusta lista: []",
+  "bardzo wąskie okno: (0, 1, 80)",
+  "poziome 4000x3000: 1.333 | pionowe zapisane jako 4000x3000 (orient 6): 0.75 | brak wymiarów: 1.333 | błąd: 1.333"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

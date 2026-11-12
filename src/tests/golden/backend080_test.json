@@ -1,0 +1,28 @@
+{
+ "lines": [
+  "auth: [True, True, True, False, False]",
+  "'2024'             -> ('2024', datetime.date(2024, 1, 1), datetime.date(2024, 12, 31))",
+  "'08.2024'          -> ('sie 2024', datetime.date(2024, 8, 1), datetime.date(2024, 8, 31))",
+  "'2024-08'          -> ('sie 2024', datetime.date(2024, 8, 1), datetime.date(2024, 8, 31))",
+  "'15.08.2024'       -> ('15 sie 2024', datetime.date(2024, 8, 15), datetime.date(2024, 8, 15))",
+  "'2024-08-15'       -> ('15 sie 2024', datetime.date(2024, 8, 15), datetime.date(2024, 8, 15))",
+  "'sierpień 2024'    -> ('sie 2024', datetime.date(2024, 8, 1), datetime.date(2024, 8, 31))",
+  "'15 sie 2024'      -> ('15 sie 2024', datetime.date(2024, 8, 15), datetime.date(2024, 8, 15))",
+  "'sie 2024'         -> ('sie 2024', datetime.date(2024, 8, 1), datetime.date(2024, 8, 31))",
+  "'aug 2024'         -> ('sie 2024', datetime.date(2024, 8, 1), datetime.date(2024, 8, 31))",
+  "'paź 2023'         -> ('paź 2023', datetime.date(2023, 10, 1), datetime.date(2023, 10, 31))",
+  "'32.01.2024'       -> None",
+  "'abc'              -> None",
+  "'1850'             -> None",
+  "środek      newest_first -> rank=6000 desc=True data_pozycji=2019-07-25 (cel 2019-07-25) zapytań=17",
+  "początek    newest_first -> rank=3 desc=True data_pozycji=2015-01-01 (cel 2015-01-01) zapytań=17",
+  "przed 2015  newest_first -> rank=0 desc=True data_pozycji=2015-01-01 (cel 2010-01-01) zapytań=17",
+  "po końcu    newest_first -> rank=11999 desc=True data_pozycji=2024-02-16 (cel 2024-02-25) zapytań=16",
+  "iter_jump newest-first: pierwsza ≤ cel: True | malejąco: True",
+  "iter_jump oldest-first: pierwsza ≥ cel: True | rosnąco: True",
+  "album malejący po pozycji: pierwsza ≤ cel: True | malejąco: True",
+  "cache_size>=1000: True | clear zwolnił: True | po: 0"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

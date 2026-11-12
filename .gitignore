@@ -1,0 +1,24 @@
+# Built packages and archives (published in GitHub Releases, not in git)
+*.deb
+*.tar.gz
+*.zip
+*.flatpak
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Flatpak build output
+.flatpak-builder/
+src/flatpak/build-dir/
+src/flatpak/*.build.yml
+
+# Editors and system files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+src/flatpak/python3-deps.json

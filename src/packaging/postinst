@@ -1,0 +1,58 @@
+#!/bin/sh
+# Builds (or rebuilds) the private Python environment of Linux iCloud Photos.
+# Runs on install/upgrade (configure), on `dpkg-reconfigure` (reconfigure) and, through the
+# trigger on /usr/bin/python3, whenever the system Python is upgraded (triggered).
+set -e
+
+APP_HOME=/opt/linux-icloud-photos
+VENV=$APP_HOME/venv
+SHARE=/usr/share/linux-icloud-photos
+
+pyminor() {
+    "$1" -c 'import sys; print("%d.%d" % sys.version_info[:2])' 2>/dev/null || true
+}
+
+# pip_group FILE NAME: pinned+constrained -> pinned top-level only -> newest (untested)
+pip_group() {
+    f="$1"; name="$2"
+    PIP="$VENV/bin/pip install --quiet --disable-pip-version-check"
+    if $PIP -r "$f" -c "$SHARE/constraints.txt" 2>/dev/null; then return 0; fi
+    echo "NOTE: could not install the exact tested versions of $name; trying the pinned top-level versions." >&2
+    if $PIP -r "$f"; then return 0; fi
+    echo "NOTE: could not install the pinned versions of $name; trying the newest versions (NOT tested)." >&2
+    sed -e '/^#/d' -e '/^$/d' -e 's/[=<>].*//' "$f" | xargs $PIP
+}
+
+setup_venv() {
+    SYS_MINOR=$(pyminor "$(command -v python3)")
+    mkdir -p "$APP_HOME"
+    if [ -x "$VENV/bin/python" ]; then
+        VENV_MINOR=$(pyminor "$VENV/bin/python")
+        if [ "$VENV_MINOR" != "$SYS_MINOR" ]; then
+            echo "Linux iCloud Photos: Python changed (${VENV_MINOR:-broken} -> $SYS_MINOR), rebuilding its environment..." >&2
+            rm -rf "$VENV"
+        fi
+    elif [ -e "$VENV" ]; then
+        rm -rf "$VENV"
+    fi
+    if [ ! -x "$VENV/bin/python" ]; then
+        python3 -m venv --system-site-packages "$VENV"
+    fi
+    pip_group "$SHARE/requirements.txt" "pyicloud and keyring" \
+        || { echo "WARNING: could not install pyicloud (no internet?)." >&2
+             echo "Finish with:  sudo dpkg-reconfigure linux-icloud-photos" >&2; }
+    pip_group "$SHARE/requirements-optional.txt" "Chromecast/AirPlay support" \
+        || echo "WARNING: Chromecast/AirPlay support was not installed (everything else works)." >&2
+    echo "$SYS_MINOR" > "$APP_HOME/.python-version"
+}
+
+case "$1" in
+    configure|reconfigure|triggered)
+        setup_venv
+        command -v gtk-update-icon-cache >/dev/null 2>&1 && \
+            gtk-update-icon-cache -q -t -f /usr/share/icons/hicolor 2>/dev/null || true
+        command -v update-desktop-database >/dev/null 2>&1 && \
+            update-desktop-database -q /usr/share/applications 2>/dev/null || true
+        ;;
+esac
+exit 0

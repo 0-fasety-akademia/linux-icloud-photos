@@ -1,0 +1,28 @@
+{
+ "lines": [
+  "--- single_already:",
+  "Zdjęcie „IMG_0749.JPG” jest już w albumie „Alpy”.",
+  "    toast: Zdjęcie „IMG_0749.JPG” jest już w albumie „Alpy”.",
+  "--- all_already:",
+  "Wszystkie zaznaczone zdjęcia (3) są już w albumie „Alpy”.",
+  "    toast: Wszystkie zaznaczone zdjęcia (3) są już w albumie „Alpy”.",
+  "--- part:",
+  "Dodano 2 z 4 do albumu „Alpy”.",
+  "Już w albumie „Alpy”: 2 (IMG_0749.JPG, IMG_0748.JPG).",
+  "    toast: Dodano 2 z 4 do albumu „Alpy”. (2 już tam było)",
+  "--- many_already:",
+  "Dodano 1 z 8 do albumu „Alpy”.",
+  "Już w albumie „Alpy”: 7 (IMG_0748.JPG, IMG_0747.JPG, IMG_0746.JPG, IMG_0745.JPG, IMG_0744.JPG i 2 innych).",
+  "    toast: Dodano 1 z 8 do albumu „Alpy”. (7 już tam było)",
+  "--- none_already:",
+  "Dodano 2 z 2 do albumu „Alpy”.",
+  "    toast: Dodano 2 z 2 do albumu „Alpy”.",
+  "--- unchecked:",
+  "Dodano 2 z 2 do albumu „Alpy”.",
+  "Błędy:",
+  "Nie udało się sprawdzić, czy zdjęcia już są w albumie - dodano bez sprawdzania.",
+  "    toast: Dodano 2 z 2 do albumu „Alpy”."
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

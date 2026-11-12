@@ -1,0 +1,25 @@
+{
+ "lines": [
+  "layout_rows_cols -> (4, 5)",
+  "begin_normal_not_claimed -> True",
+  "drag_enters_select_mode_and_claims -> (True, True, True)",
+  "rubber_visible_during_drag -> (True, False)",
+  "selected_2x3 -> 6",
+  "check_marks_match -> 6",
+  "shrink_rect_shrinks_selection -> 2",
+  "rubber_hidden_after_end -> (False, 6)",
+  "second_drag_adds -> 8",
+  "ctrl_drag_xor -> 8",
+  "click_in_select_mode_toggles_on -> (1, True)",
+  "click_again_toggles_off -> 0",
+  "ctrl_click_enters_mode -> (True, 1, True)",
+  "plain_click_untouched -> (False, 0, True)",
+  "scrollbar_press_ignored -> True",
+  "autoscroll_moves_and_selects_more -> (True, True, 4)",
+  "rubber_has_size_after_layout -> (True, True, True)",
+  "rubber_hidden_at_end -> False",
+  "EXCEPTIONS: none"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

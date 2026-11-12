@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E9EDF4"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#bg)"/>
+  <rect x="8.5" y="8.5" width="239" height="239" rx="55.5" fill="none" stroke="#000000" stroke-opacity="0.10"/>
+  <g>
+    <ellipse cx="128" cy="80" rx="31" ry="50" fill="#FF5E57" opacity="0.88" transform="rotate(0 128 128)"/>
+    <ellipse cx="128" cy="80" rx="31" ry="50" fill="#FF9F1A" opacity="0.88" transform="rotate(45 128 128)"/>
+    <ellipse cx="128" cy="80" rx="31" ry="50" fill="#FFD60A" opacity="0.88" transform="rotate(90 128 128)"/>
+    <ellipse cx="128" cy="80" rx="31" ry="50" fill="#7BD42B" opacity="0.88" transform="rotate(135 128 128)"/>
+    <ellipse cx="128" cy="80" rx="31" ry="50" fill="#1DD3B0" opacity="0.88" transform="rotate(180 128 128)"/>
+    <ellipse cx="128" cy="80" rx="31" ry="50" fill="#2F9BFF" opacity="0.88" transform="rotate(225 128 128)"/>
+    <ellipse cx="128" cy="80" rx="31" ry="50" fill="#7B61FF" opacity="0.88" transform="rotate(270 128 128)"/>
+    <ellipse cx="128" cy="80" rx="31" ry="50" fill="#FF5CAA" opacity="0.88" transform="rotate(315 128 128)"/>
+  </g>
+  <circle cx="128" cy="128" r="12" fill="#FFFFFF" opacity="0.9"/>
+</svg>

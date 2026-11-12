@@ -1,0 +1,29 @@
+{
+ "lines": [
+  "select_mode_always_on -> (True, True)",
+  "header_buttons_hidden -> (False, False)",
+  "hint_when_nothing_selected -> Zaznacz zdjęcia i filmy, potem kliknij „Wybierz”",
+  "pick_button_disabled_without_selection -> (False, 'Wybierz', True)",
+  "no_delete_or_album_buttons -> False",
+  "two_selected_label_and_button -> ('Zaznaczono: 2 z 3', True, 'Wybierz (2)')",
+  "limit_three_enforced -> (3, True)",
+  "deselecting_last_keeps_mode_on -> True",
+  "delete_blocked_in_pick_mode -> []",
+  "delete_key_not_handled -> []",
+  "drop_upload_refused -> False",
+  "set_select_mode_false_keeps_mode_clears_selection -> (None, True, 0)",
+  "ctrl_a_selects_only_max -> 3",
+  "escape_with_selection_clears -> (True, 0, True)",
+  "escape_without_selection_cancels -> (True, [1])",
+  "failed_export_keeps_window_and_reenables -> (False, False, True, True)",
+  "pick_button_label_two -> Wybierz (2)",
+  "app_marked_picked -> True",
+  "result_json -> (False, [], [('IMG_0749.jpg', 'photo', 'medium'), ('IMG_0748.JPG', 'photo', 'original')])",
+  "files_written -> ['IMG_0748.JPG', 'IMG_0749.jpg']",
+  "backend_calls -> [('IMG_0749.HEIC', 'original'), ('IMG_0749.HEIC', 'medium'), ('IMG_0748.JPG', 'original')]",
+  "library_untouched -> []",
+  "EXCEPTIONS: none"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}

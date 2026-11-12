@@ -1,0 +1,51 @@
+name: Release
+
+# Pushing a tag such as v0.16.2 builds the .deb and the source archive
+# and publishes them as a GitHub Release.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check that the tag matches version.py
+        run: |
+          VERSION=$(python3 -c 'import version; print(version.VERSION)')
+          if [ "${GITHUB_REF_NAME}" != "v${VERSION}" ]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match version.py (${VERSION})"; exit 1
+          fi
+          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
+
+      - name: Build the package
+        run: |
+          mkdir -p dist
+          bash build-deb.sh "" dist
+
+      - name: Install it
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ./dist/linux-icloud-photos_${VERSION}_all.deb
+
+      - name: Source archive
+        run: |
+          git -C .. archive --format=tar.gz --prefix=linux-icloud-photos/ \
+            -o "src/dist/linux-icloud-photos-${VERSION}-src.tar.gz" HEAD:src
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          NOTES=$(awk -v v="- ${VERSION}:" 'index($0, v) == 1 { sub(/^- [^:]*: /, ""); print; exit }' README.md)
+          gh release create "${GITHUB_REF_NAME}" dist/*.deb dist/*.tar.gz \
+            --title "Linux iCloud Photos ${VERSION}" \
+            --notes "${NOTES:-See README.md for the version history.}"

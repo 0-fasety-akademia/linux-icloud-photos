@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Linux iCloud Photos
+GenericName=iCloud Photos client
+GenericName[pl]=Klient iCloud Photos
+Comment=Browse your iCloud photos and videos without syncing them to disk
+Comment[pl]=Przeglądaj zdjęcia i wideo z iCloud bez synchronizacji na dysk
+Exec=linux-icloud-photos
+Icon=linux-icloud-photos
+Terminal=false
+Categories=Graphics;Photography;Viewer;
+Keywords=iCloud;Photos;Apple;Video;Memories;Slideshow;
+Keywords[pl]=iCloud;Zdjęcia;Apple;Wideo;Pokaz slajdów;
+StartupWMClass=local.linuxicloudphotos.Photos
+StartupNotify=true

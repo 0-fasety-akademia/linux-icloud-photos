@@ -1,0 +1,22 @@
+{
+ "lines": [
+  "old_dirs_are_moved_to_new_names -> (0, False, False)",
+  "config_session_and_cache_content_kept -> (['config.json', 'session/cookies.txt'], ['debug.log', 'thumbs/a.jpg'])",
+  "config_text_unchanged -> {\"language\": \"de\", \"apple_id\": \"a@b.c\"}",
+  "existing_new_dirs_are_never_overwritten -> (True, True, ['config.json'], ['debug.log', 'thumbs/n.jpg'], '{\"language\": \"uk\"}')",
+  "only_new_dirs_nothing_to_do -> (0, False, ['config.json'])",
+  "fresh_install_import_creates_no_config_and_only_the_log -> (0, None, ['debug.log'])",
+  "language_read_from_old_config_dir -> de",
+  "airplay_creds_found_under_old_service -> CREDS",
+  "airplay_creds_copied_to_new_service -> [('linux-icloud-photos-airplay', 'tv1', 'CREDS')]",
+  "airplay_new_service_preferred -> NEW",
+  "service_names -> ('linux-icloud-photos-airplay', 'icloud-photos-linux-airplay')",
+  "app_uses_password_saved_under_old_name -> [('pw', 'oldpw'), ('login', 'jan@example.com', 'oldpw')]",
+  "app_copies_it_to_new_service -> [('linux-icloud-photos', 'jan@example.com', 'oldpw')]",
+  "app_prefers_new_service -> ([('pw', 'newpw'), ('login', 'jan@example.com', 'newpw')], [])",
+  "app_service_names -> ('linux-icloud-photos', 'icloud-photos-linux')",
+  "EXCEPTIONS: none"
+ ],
+ "runs": 2,
+ "dropped_unstable": 0
+}
