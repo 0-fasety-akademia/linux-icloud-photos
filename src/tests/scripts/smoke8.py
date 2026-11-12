@@ -36,7 +36,7 @@ class Fake:
     def fetch(s,a,kind): return jpeg(240 if kind=="thumb" else 1200, 240 if kind=="thumb" else 800, 0x3070b0ff)
     def fetch_original(s,a): return jpeg(2400,1600,0x2288ccff)
     def album_cover(s,key,album): return jpeg(120,120,0xc06030ff)
-    def stream_url(s,a,ver,lan_host=None): return f"http://{lan_host or '127.0.0.1'}:9/tok-{ver}"
+    def stream_url(s,a,ver,lan_host=None,blob=None): return f"http://{lan_host or '127.0.0.1'}:9/tok-{ver}"
     def lan_ip_for(s,h): return "192.168.1.50"
     def upload(s,path,album=None): Fake.uploads.append((os.path.basename(path), album)); 
 R={}

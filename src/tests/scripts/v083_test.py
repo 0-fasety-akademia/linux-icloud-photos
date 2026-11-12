@@ -36,7 +36,7 @@ class Fake:
     def fetch(s,a,kind): return jpeg(240 if kind=="thumb" else 1200, 240 if kind=="thumb" else 800, 0x3070b0ff)
     def fetch_original(s,a): return jpeg(2400,1600,0x2288ccff)
     def album_cover(s,key,album): return jpeg(120,120,0xc06030ff)
-    def stream_url(s,a,ver,lan_host=None): return f"http://{lan_host or '127.0.0.1'}:9/tok-{ver}"
+    def stream_url(s,a,ver,lan_host=None,blob=None): return f"http://{lan_host or '127.0.0.1'}:9/tok-{ver}"
     def lan_ip_for(s,h): return "192.168.1.50"
     def upload(s,path,album=None): Fake.uploads.append((os.path.basename(path), album)); 
 R={}
@@ -161,7 +161,7 @@ class T(Adw.Application):
         w.set_tile_size(280); later(1800,self.d)
     def d(self):
         w=self.win
-        step("D1_bigger_target_bigger_rows", lambda: (self.h0, w.rows_store.get_item(0).h, w.rows_store.get_item(0).h>self.h0))
+        step("D1_bigger_target_bigger_rows", lambda: w.rows_store.get_item(0).h>self.h0)
         w0=w.grid_sw.get_width(); w.sidebar_btn.set_active(False); later(1800, lambda: self.e(w0))
     def e(self, w0):
         w=self.win

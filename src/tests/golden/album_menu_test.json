@@ -18,7 +18,7 @@
   "direct_add_remembered_first -> Rodzina",
   "direct_add_toast -> Dodano 1 z 1 do albumu „Rodzina”.",
   "menu_other_opens_dialog -> 1",
-  "context_menu_items -> ['Informacje', 'Pokaz slajdów od tego zdjęcia', '---', 'Dodaj do albumu „Rodzina”', 'Dodaj do albumu „Alpy”', 'Dodaj do innego albumu…', '---', 'Zapisz oryginał jako…', 'Kopiuj nazwę pliku', '---', 'Usuń…']",
+  "context_menu_items -> ['Informacje', 'Pokaz slajdów od tego zdjęcia', '---', 'Dodaj do albumu „Rodzina”', 'Dodaj do albumu „Alpy”', 'Dodaj do innego albumu…', '---', 'Wyślij na TV', 'Zapisz oryginał jako…', 'Kopiuj nazwę pliku', '---', 'Usuń…']",
   "context_info_first_album_before_save -> ('Informacje', True)",
   "context_menu_selection_suffix -> ['Dodaj do albumu „Rodzina” (3 zdjęcia)', 'Dodaj do albumu „Alpy” (3 zdjęcia)', 'Dodaj do innego albumu…']",
   "context_click_adds_all_selected -> None",

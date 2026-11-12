@@ -17,7 +17,7 @@
   "B6_differing_widths -> True",
   "B7_aspect_corrected_from_thumbnail -> [1.33, 1.33, 1.33]",
   "C1_incremental_append -> (True, True, False)",
-  "D1_bigger_target_bigger_rows -> (159, 231, True)",
+  "D1_bigger_target_bigger_rows -> True",
   "E1_width_change_relayouts -> (1015, 1290, 1276, 0)",
   "E2_tile_activate_opens_viewer -> 1",
   "E3_click_selects_in_rows -> 1",

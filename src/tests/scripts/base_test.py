@@ -36,7 +36,7 @@ class Fake:
     def fetch(s,a,kind): return jpeg(240 if kind=="thumb" else 1200, 240 if kind=="thumb" else 800, 0x3070b0ff)
     def fetch_original(s,a): return jpeg(2400,1600,0x2288ccff)
     def album_cover(s,key,album): return jpeg(120,120,0xc06030ff)
-    def stream_url(s,a,ver,lan_host=None): return f"http://{lan_host or '127.0.0.1'}:9/tok-{ver}"
+    def stream_url(s,a,ver,lan_host=None,blob=None): return f"http://{lan_host or '127.0.0.1'}:9/tok-{ver}"
     def lan_ip_for(s,h): return "192.168.1.50"
     def upload(s,path,album=None): Fake.uploads.append((os.path.basename(path), album)); 
 R={}
@@ -75,7 +75,7 @@ class T(Adw.Application):
         ur=[w.list_user.get_row_at_index(i) for i in range(3)]
         step("user_album_covers", lambda: [r.thumb.get_paintable() is not None for r in ur])
         step("expanders_bold", lambda: (w.exp_more.get_label_widget().has_css_class("heading"), w.exp_user.get_label_widget().get_text()))
-        step("version_label_matches_version_py", lambda: w.sidebar_scroller.get_last_child().get_text() == f"v{A.VERSION}  ·  {A.DATE}")
+        step("version_label_matches_version_py", lambda: w.sidebar_scroller.get_last_child().get_text() == f"v{A.VERSION}  ·  {A.DATE}\n{A.CREDITS}")
         step("grid_items", lambda: w.store.get_n_items())
         self.quit()
 T(application_id="t.base").run([])
