@@ -65,7 +65,7 @@ jobs:
       - name: Install it
         run: |
           sudo apt-get update
-          sudo apt-get install -y ./dist/linux-icloud-photos_*_all.deb
+          sudo apt-get install -y desktop-file-utils ./dist/linux-icloud-photos_*_all.deb
       - name: Check the installed environment
         run: |
           /opt/linux-icloud-photos/venv/bin/python -c "import pyicloud, keyring; print('pyicloud', __import__('importlib.metadata').metadata.version('pyicloud'))"
