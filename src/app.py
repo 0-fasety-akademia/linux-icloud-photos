@@ -3651,15 +3651,23 @@ class MainWindow(Adw.ApplicationWindow):
         # a panele z tekstem zawsze mają co najmniej 75% krycia.
         win_a = 1.0 - 0.60 * k            # tło okna (marginesy, szczeliny): do 40% krycia
         panel_a = 1.0 - 0.25 * k          # panele (nagłówek, paski): min. 75% krycia
+        # libadwaita >= 1.6: @window_bg_color/@headerbar_bg_color to stałe, NIE śledzą zmiennych CSS, które
+        # nadpisuje motyw (Aurora) – stąd var() + color-mix; starsze wersje znają tylko @define-color.
+        if (Adw.get_major_version(), Adw.get_minor_version()) >= (1, 6):
+            def tint(name, a):
+                return f"color-mix(in srgb, var(--{name.replace('_', '-')}-color) {a * 100:.1f}%, transparent)"
+        else:
+            def tint(name, a):
+                return f"alpha(@{name}_color, {a:.3f})"
         css = (
-            f"window.glass.background {{ background-color: alpha(@window_bg_color, {win_a:.3f}); }}\n"
-            f"window.glass headerbar {{ background-color: alpha(@headerbar_bg_color, {panel_a:.3f});"
+            f"window.glass.background {{ background-color: {tint('window_bg', win_a)}; }}\n"
+            f"window.glass headerbar {{ background-color: {tint('headerbar_bg', panel_a)};"
             f" box-shadow: none; }}\n"
             "window.glass .navigation-sidebar, window.glass scrolledwindow, window.glass gridview,"
             " window.glass listview, window.glass paned, window.glass stack, window.glass .view"
             " { background-color: transparent; }\n"
             f"window.glass actionbar > revealer > box, window.glass .text-panel {{ background-color:"
-            f" alpha(@window_bg_color, {panel_a:.3f}); }}\n"
+            f" {tint('window_bg', panel_a)}; }}\n"
         )
         self._glass_provider.load_from_data(css.encode())
         self.add_css_class("glass")
