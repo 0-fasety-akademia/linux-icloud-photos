@@ -89,6 +89,7 @@ DE = {
     "Automatic (system language)": "Automatisch (Systemsprache)",
     "The language change takes effect after restarting the app": "Die Sprachänderung wird nach einem Neustart der App wirksam",
     "Window transparency": "Fenstertransparenz",
+    "Theme": "Design", "System": "System",
     "Off": "Aus",
     "Blurred background made from your photos. Blurring the desktop behind the window is done by the system only (for example the Blur my Shell extension).": "Unscharfer Hintergrund aus Ihren Fotos. Den Desktop hinter dem Fenster kann nur das System weichzeichnen (z. B. die Erweiterung Blur my Shell).",
     # Zu Album hinzufügen

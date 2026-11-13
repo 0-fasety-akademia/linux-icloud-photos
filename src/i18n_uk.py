@@ -89,6 +89,7 @@ UK = {
     "Automatic (system language)": "Автоматично (мова системи)",
     "The language change takes effect after restarting the app": "Зміна мови набуде чинності після перезапуску програми",
     "Window transparency": "Прозорість вікна",
+    "Theme": "Тема", "System": "Системна",
     "Off": "Вимкнено",
     "Blurred background made from your photos. Blurring the desktop behind the window is done by the system only (for example the Blur my Shell extension).": "Розмитий фон із ваших фото. Розмиття робочого столу за вікном виконує лише система (наприклад, розширення Blur my Shell).",
     # Додавання до альбому

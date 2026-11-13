@@ -1,6 +1,6 @@
 # Linux iCloud Photos
 
-**Current version: 0.17.0 (2026-11-13)**
+**Current version: 0.17.1 (2026-11-13)**
 
 Created by: JGu  
 Supported by Claude
@@ -173,6 +173,7 @@ All commands below are run inside `src/`.
 
 ## Version history
 
+- 0.17.1: German and Ukrainian translations for the new Theme setting (the 0.17.0 test suite flagged them as missing). No other changes.
 - 0.17.0: new **Aurora** theme (Settings → Theme): pastel glass in light mode, an aurora glow on deep navy in dark mode, following the system light/dark setting; violet → cyan gradient on selection and main buttons, rounded thumbnails with a glowing frame on hover. *System* keeps the standard look; works together with window transparency. Homepage in the package points to GitHub.
 - 0.16.3: the license (`LICENSE`, `packaging/copyright`) names its author, JGu; the terms are unchanged. No other changes in the app.
 - 0.16.2: no changes in the app. The repository now holds the source code in `src/` instead of a source archive, and the `.deb` is published on the GitHub Releases page (built by GitHub Actions for every version tag). README brought up to date (installation steps, removed the finished roadmap).
