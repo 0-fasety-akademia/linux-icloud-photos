@@ -38,7 +38,7 @@ modules:
     buildsystem: simple
     build-commands:
       - install -d /app/lib/linux-icloud-photos
-      - install -m 644 app.py backend.py bridge.py cast.py cast_gc.py airplay.py exif.py pick.py i18n.py i18n_de.py i18n_uk.py version.py /app/lib/linux-icloud-photos/
+      - install -m 644 app.py aurora.py backend.py bridge.py cast.py cast_gc.py airplay.py exif.py pick.py i18n.py i18n_de.py i18n_uk.py version.py /app/lib/linux-icloud-photos/
       - install -Dm755 flatpak/flatpak-launcher.sh /app/bin/linux-icloud-photos
       # every command runs in its own sandbox with its own /tmp, so write straight into /app (no temp file)
       - install -d /app/share/applications

@@ -376,6 +376,8 @@ EN = {
     # --- pokaz slajdów w podglądzie, przezroczystość ---
     "Pokaz slajdów od tego zdjęcia": "Slideshow from this photo",
     "Przezroczystość okna": "Window transparency",
+    "Motyw": "Theme",
+    "Systemowy": "System",
     "Wyłączona": "Off",
     "Rozmyte tło ze zdjęć. Rozmycie pulpitu za oknem robi tylko system (np. rozszerzenie Blur my Shell).": "Blurred background made from your photos. Blurring the desktop behind the window is done by the system only (for example the Blur my Shell extension).",
     # --- usuwanie zdjęć ---

@@ -1476,10 +1476,19 @@ class SettingsDialog(Gtk.Window):
         hint.set_max_width_chars(38)
         hint.add_css_class("dim-label")
         grid.attach(hint, 1, 6, 1, 1)
+        # motyw wyglądu (wstawiony nad przezroczystością okna)
+        grid.insert_row(5)
+        grid.attach(Gtk.Label(label=tr("Motyw"), xalign=0), 0, 5, 1, 1)
+        self.themes = ["system", "aurora"]
+        self.theme_dd = Gtk.DropDown.new_from_strings([tr("Systemowy"), "Aurora"])
+        cur_t = load_cfg().get("theme", "system")
+        self.theme_dd.set_selected(self.themes.index(cur_t) if cur_t in self.themes else 0)
+        self.theme_dd.connect("notify::selected", self._on_theme)
+        grid.attach(self.theme_dd, 1, 5, 1, 1)
         pv = Gtk.Label(label=f"pyicloud {pyicloud_version() or '?'}  (tested: {TESTED_PYICLOUD})",
                        xalign=0)
         pv.add_css_class("dim-label")
-        grid.attach(pv, 1, 7, 1, 1)
+        grid.attach(pv, 1, 8, 1, 1)
         self.set_child(grid)
         self._refresh_size()
 
@@ -1503,6 +1512,13 @@ class SettingsDialog(Gtk.Window):
         v = int(scale.get_value())
         self.win.set_glass(v)
         save_cfg(glass=v)
+
+    def _on_theme(self, dd, _p):
+        name = self.themes[dd.get_selected()]
+        save_cfg(theme=name)
+        look = getattr(self.win.get_application(), "look", None)
+        if look is not None:
+            look.apply(name)
 
     def _on_language(self, dd, _p):
         save_cfg(language=self.langs[dd.get_selected()])
@@ -3915,6 +3931,16 @@ class App(Adw.Application):
         sm = Adw.StyleManager.get_default()
         apply_theme_icon(sm.get_dark())
         sm.connect("notify::dark", lambda m, _p: apply_theme_icon(m.get_dark()))
+        # motyw wyglądu: Systemowy (Adwaita) albo Aurora – miniatury z poświatą po najechaniu
+        from aurora import AuroraTheme
+        if getattr(self, "look", None) is None:
+            glow = {False: "gridview > child:hover { box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px alpha(#7c5cff, 0.7),"
+                           " 0 12px 30px alpha(#7c5cff, 0.45); }",
+                    True: "gridview > child:hover { box-shadow: 0 0 0 2px alpha(#22d3ee, 0.85),"
+                          " 0 0 28px alpha(#22d3ee, 0.5); }"}
+            common = "gridview > child { border-radius: 12px; transition: box-shadow 150ms; }\n"
+            self.look = AuroraTheme(extra={k: common + v for k, v in glow.items()})
+            self.look.apply(load_cfg().get("theme", "system"))
         for old in ("index.json", "albums_index.json", "places.json"):  # po usuniętych Wspomnieniach
             try:
                 (CACHE_DIR / old).unlink()

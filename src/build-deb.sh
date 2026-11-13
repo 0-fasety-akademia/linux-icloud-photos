@@ -13,7 +13,7 @@ install -d "$ROOT/DEBIAN" "$ROOT/usr/bin" "$ROOT/usr/lib/$PKG" \
   "$ROOT/usr/share/icons/hicolor/scalable/apps" "$ROOT/usr/share/icons/hicolor/256x256/apps" \
   "$ROOT/usr/share/linux-icloud-photos"
 
-install -m 0644 app.py backend.py bridge.py cast.py cast_gc.py airplay.py exif.py pick.py i18n.py i18n_de.py i18n_uk.py version.py "$ROOT/usr/lib/$PKG/"
+install -m 0644 app.py aurora.py backend.py bridge.py cast.py cast_gc.py airplay.py exif.py pick.py i18n.py i18n_de.py i18n_uk.py version.py "$ROOT/usr/lib/$PKG/"
 install -m 0755 packaging/launcher "$ROOT/usr/bin/$PKG"
 install -m 0755 packaging/icon-watch.sh "$ROOT/usr/lib/$PKG/icon-watch.sh"
 install -d "$ROOT/etc/xdg/autostart"
