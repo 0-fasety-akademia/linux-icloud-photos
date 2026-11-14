@@ -1,6 +1,6 @@
 # Linux iCloud Photos
 
-**Current version: 0.17.2 (2026-11-13)**
+**Current version: 0.17.3 (2026-11-14)**
 
 Created by: JGu  
 Supported by Claude
@@ -173,6 +173,7 @@ All commands below are run inside `src/`.
 
 ## Version history
 
+- 0.17.3: The release package again includes the 256 px PNG icon (the 0.17.2 build server lacked the image library and skipped it). No app changes.
 - 0.17.2: The Aurora theme now also colours the top bar when window transparency (glass) is on. Before, the glass setting kept the stock Adwaita header colour.
 - 0.17.1: German and Ukrainian translations for the new Theme setting (the 0.17.0 test suite flagged them as missing). No other changes.
 - 0.17.0: new **Aurora** theme (Settings → Theme): pastel glass in light mode, an aurora glow on deep navy in dark mode, following the system light/dark setting; violet → cyan gradient on selection and main buttons, rounded thumbnails with a glowing frame on hover. *System* keeps the standard look; works together with window transparency. Homepage in the package points to GitHub.

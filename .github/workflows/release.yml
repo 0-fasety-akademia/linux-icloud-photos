@@ -26,6 +26,11 @@ jobs:
           fi
           echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
 
+      - name: Install build tools (PNG icon needs GdkPixbuf + the SVG loader)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-gi gir1.2-gdkpixbuf-2.0 librsvg2-common
+
       - name: Build the package
         run: |
           mkdir -p dist
